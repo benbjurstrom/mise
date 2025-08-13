@@ -195,7 +195,6 @@ class File extends ConsoleCommand
     public function addTraits(string $path, string|array $traits): static
     {
         (new PhpParser)->edit($path, [new AddTraitVisitor($traits)]);
-        // (new CsFixer)->fix($path, ['class_attributes_separation', 'single_line_after_imports']);
 
         return $this;
     }
