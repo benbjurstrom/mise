@@ -302,7 +302,7 @@ test('file->addTraits(...) adds trait to class with no traits', function () {
 
     (new File)->addTraits($path, 'HasFactory');
 
-    expect(Storage::get($path))->toBe("<?php\n\nnamespace App\\Models;\n\nclass User extends Model\n{\n    use HasFactory;\n    public function getName()\n    {\n        return \$this->name;\n    }\n}");
+    expect(Storage::get($path))->toBe("<?php\n\nnamespace App\\Models;\n\nclass User extends Model\n{\n    use HasFactory;\n\n    public function getName()\n    {\n        return \$this->name;\n    }\n}");
 });
 
 test('file->addTraits(...) adds trait to class with existing traits', function () {
@@ -332,7 +332,7 @@ test('file->addTraits(...) adds multiple traits at once', function () {
 
     (new File)->addTraits($path, ['HasFactory', 'Notifiable', 'HasUuids']);
 
-    expect(Storage::get($path))->toBe("<?php\n\nnamespace App\\Models;\n\nclass User extends Model\n{\n    use HasFactory, Notifiable, HasUuids;\n    public function getName()\n    {\n        return \$this->name;\n    }\n}");
+    expect(Storage::get($path))->toBe("<?php\n\nnamespace App\\Models;\n\nclass User extends Model\n{\n    use HasFactory, Notifiable, HasUuids;\n\n    public function getName()\n    {\n        return \$this->name;\n    }\n}");
 });
 
 test('file->addTraits(...) adds multiple traits to class with existing traits', function () {
@@ -362,7 +362,7 @@ test('file->addTraits(...) works with fully qualified trait names', function () 
 
     (new File)->addTraits($path, 'Illuminate\\Database\\Eloquent\\Factories\\HasFactory');
 
-    expect(Storage::get($path))->toBe("<?php\n\nnamespace App\\Models;\n\nclass User extends Model\n{\n    use Illuminate\\Database\\Eloquent\\Factories\\HasFactory;\n    public function getName()\n    {\n        return \$this->name;\n    }\n}");
+    expect(Storage::get($path))->toBe("<?php\n\nnamespace App\\Models;\n\nclass User extends Model\n{\n    use Illuminate\\Database\\Eloquent\\Factories\\HasFactory;\n\n    public function getName()\n    {\n        return \$this->name;\n    }\n}");
 });
 
 test('file->addTraits(...) throws exception when no class is found', function () {
