@@ -6,7 +6,7 @@ use Exception;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use PhpParser\NodeTraverser;
-use PhpParser\NodeVisitor;
+use PhpParser\NodeVisitor\CloningVisitor;
 use PhpParser\NodeVisitorAbstract;
 use PhpParser\Parser;
 use PhpParser\ParserFactory;
@@ -47,7 +47,7 @@ class PhpParser
 
         // Clone the AST before making changes
         $cloningTraverser = new NodeTraverser;
-        $cloningTraverser->addVisitor(new NodeVisitor\CloningVisitor);
+        $cloningTraverser->addVisitor(new CloningVisitor);
         $newStmts = $cloningTraverser->traverse($oldStmts);
 
         // Apply the edits to the cloned AST
